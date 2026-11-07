@@ -112,7 +112,7 @@
         {% for p in productos %}
         <div class="card">
             <!-- Imagen temporal (luego las pondremos en S3) -->
-            <img src="https://via.placeholder.com/280x220/FFB6C1/FFFFFF?text=Torta+{{p.nombre}}" alt="{{p.nombre}}">
+            <img src="{{ p.imagen_url if p.imagen_url else 'https://via.placeholder.com/280x220/FFB6C1/FFFFFF?text=' + p.nombre }}" alt="{{p.nombre}}">
             <h3>{{ p.nombre }}</h3>
             <p>{{ p.descripcion[:80] }}...</p>
             <div class="precio">${{ "%.2f"|format(p.precio) }}</div>

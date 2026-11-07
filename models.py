@@ -40,6 +40,7 @@ class Producto(db.Model):
     nombre = db.Column(db.String(100), nullable=False)
     descripcion = db.Column(db.String(500), nullable=False)  # más de 30 chars
     precio = db.Column(db.Float, nullable=False)
+    imagen_url = db.Column(db.String(300), nullable=True)  # <--- LÍNEA AGREGADA AQUÍ
     stock = db.Column(db.Integer, default=10)
     categoria_id = db.Column(db.Integer, db.ForeignKey('categorias.id'))
     imagenes = db.relationship('ImagenProducto', backref='producto')

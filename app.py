@@ -90,7 +90,6 @@ def comprar(producto_id):
     producto = Producto.query.get_or_404(producto_id)
     
     # Lógica simple de compra (simulada, sin correo)
-    # Aquí podrías crear una Orden en la base de datos si quisieras
     flash(f'¡Has comprado {producto.nombre} por ${producto.precio}! (Compra simulada)')
     
     return redirect(url_for('tienda'))
@@ -99,22 +98,22 @@ def comprar(producto_id):
 with app.app_context():
     db.create_all()
     
-    # Si no hay productos, insertamos los 5 productos automáticamente
+    # Si no hay productos, insertamos los 5 productos automáticamente CON SUS IMÁGENES
     if not Producto.query.first():
         categoria = Categoria(nombre='Tortas Especiales', descripcion='Nuestras mejores tortas')
         db.session.add(categoria)
         db.session.commit()
         
         productos_semilla = [
-            Producto(nombre='Torta de Chocolate', descripcion='Deliciosa torta de chocolate con ganache y fresas.', precio=25.00, categoria_id=categoria.id),
-            Producto(nombre='Torta de Vainilla', descripcion='Suave bizcocho de vainilla con crema pastelera.', precio=22.00, categoria_id=categoria.id),
-            Producto(nombre='Torta Red Velvet', descripcion='Clásica torta roja con frosting de queso crema.', precio=28.00, categoria_id=categoria.id),
-            Producto(nombre='Torta de Frutas', descripcion='Bizcocho esponjoso con frutas de temporada y crema.', precio=24.00, categoria_id=categoria.id),
-            Producto(nombre='Torta de Limón', descripcion='Torta cítrica con glaseado de limón y merengue.', precio=20.00, categoria_id=categoria.id)
+            Producto(nombre='Torta de Chocolate', descripcion='Deliciosa torta de chocolate con ganache y fresas.', precio=25.00, categoria_id=categoria.id, imagen_url='https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=280&h=220&fit=crop'),
+            Producto(nombre='Torta de Vainilla', descripcion='Suave bizcocho de vainilla con crema pastelera.', precio=22.00, categoria_id=categoria.id, imagen_url='https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=280&h=220&fit=crop'),
+            Producto(nombre='Torta Red Velvet', descripcion='Clásica torta roja con frosting de queso crema.', precio=28.00, categoria_id=categoria.id, imagen_url='https://images.unsplash.com/photo-1586985289688-ca3cf47d3e6e?w=280&h=220&fit=crop'),
+            Producto(nombre='Torta de Frutas', descripcion='Bizcocho esponjoso con frutas de temporada y crema.', precio=24.00, categoria_id=categoria.id, imagen_url='https://images.unsplash.com/photo-1519869325930-281384150729?w=280&h=220&fit=crop'),
+            Producto(nombre='Torta de Limón', descripcion='Torta cítrica con glaseado de limón y merengue.', precio=20.00, categoria_id=categoria.id, imagen_url='https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=280&h=220&fit=crop')
         ]
         db.session.add_all(productos_semilla)
         db.session.commit()
-        print("Productos de prueba insertados exitosamente.")
+        print("Productos de prueba con imágenes insertados exitosamente.")
 
 if __name__ == '__main__':
     app.run(debug=True)
