@@ -37,4 +37,4 @@ tienda_tortas/
 │   ├── registro.html
 │   ├── login.html
 │   └── tienda.html
-└── README.md    
+└── README.md             
