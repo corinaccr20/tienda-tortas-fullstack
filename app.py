@@ -106,10 +106,10 @@ with app.app_context():
         
         productos_semilla = [
             Producto(nombre='Torta de Chocolate', descripcion='Deliciosa torta de chocolate con ganache y fresas.', precio=25.00, categoria_id=categoria.id, imagen_url='https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=280&h=220&fit=crop'),
-            Producto(nombre='Torta de Vainilla', descripcion='Suave bizcocho de vainilla con crema pastelera.', precio=22.00, categoria_id=categoria.id, imagen_url='https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=280&h=220&fit=crop'),
-            # Imagen actualizada de Red Velvet
-            Producto(nombre='Torta Red Velvet', descripcion='Clásica torta roja con frosting de queso crema.', precio=28.00, categoria_id=categoria.id, imagen_url='https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Red_Velvet_Cake_with_berries.jpg/800px-Red_Velvet_Cake_with_berries.jpg'),
-            # Imagen actualizada de Torta de Frutas
+            # Nueva imagen de Vainilla
+            Producto(nombre='Torta de Vainilla', descripcion='Suave bizcocho de vainilla con crema pastelera.', precio=22.00, categoria_id=categoria.id, imagen_url='https://marubotana.tv/uploads/2026/03/torta-de-vainilla.webp'),
+            # Nueva imagen de Red Velvet
+            Producto(nombre='Torta Red Velvet', descripcion='Clásica torta roja con frosting de queso crema.', precio=28.00, categoria_id=categoria.id, imagen_url='https://fratello.com.pe/wp-content/uploads/2021/04/red_velvet-2.png'),
             Producto(nombre='Torta de Frutas', descripcion='Bizcocho esponjoso con frutas de temporada y crema.', precio=24.00, categoria_id=categoria.id, imagen_url='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6iX6bKD7CeNr9wDuZVMabg7xnFOBWRRA_Po-CmUV_8maKpL6L9IDWkrK_49_I2BkPW5sQ1h39Qx5P3xDeW8j5N5vIs3N1zmjTqgUcBlhyphenhyphen4hhfP2ughBntJ2oyVSOnqWQlpn2-ogPR4iPy/s1600/1A806D8C-B120-40BC-9490-24713CD42CF2.jpeg'),
             Producto(nombre='Torta de Limón', descripcion='Torta cítrica con glaseado de limón y merengue.', precio=20.00, categoria_id=categoria.id, imagen_url='https://images.unsplash.com/photo-1519915028121-7d3463d20b13?w=280&h=220&fit=crop')
         ]
@@ -117,14 +117,14 @@ with app.app_context():
         db.session.commit()
         print("Productos de prueba con imágenes insertados exitosamente.")
     else:
-        # Si los productos ya existen, actualizamos las imágenes de Red Velvet y Frutas
+        # Si los productos ya existen, actualizamos las imágenes de Vainilla y Red Velvet
+        vainilla = Producto.query.filter_by(nombre='Torta de Vainilla').first()
+        if vainilla:
+            vainilla.imagen_url = 'https://marubotana.tv/uploads/2026/03/torta-de-vainilla.webp'
+        
         red_velvet = Producto.query.filter_by(nombre='Torta Red Velvet').first()
         if red_velvet:
-            red_velvet.imagen_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Red_Velvet_Cake_with_berries.jpg/800px-Red_Velvet_Cake_with_berries.jpg'
-        
-        torta_frutas = Producto.query.filter_by(nombre='Torta de Frutas').first()
-        if torta_frutas:
-            torta_frutas.imagen_url = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi6iX6bKD7CeNr9wDuZVMabg7xnFOBWRRA_Po-CmUV_8maKpL6L9IDWkrK_49_I2BkPW5sQ1h39Qx5P3xDeW8j5N5vIs3N1zmjTqgUcBlhyphenhyphen4hhfP2ughBntJ2oyVSOnqWQlpn2-ogPR4iPy/s1600/1A806D8C-B120-40BC-9490-24713CD42CF2.jpeg'
+            red_velvet.imagen_url = 'https://fratello.com.pe/wp-content/uploads/2021/04/red_velvet-2.png'
             
         db.session.commit()
         print("Imágenes actualizadas exitosamente.")
