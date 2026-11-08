@@ -58,7 +58,7 @@
     <div class="navbar">
         <a href="/">🍰 Inicio</a>
         {% if session.user_id %}
-            <a href="/tienda">🛍️ Tienda VIP</a>
+            <!-- Se eliminó la línea de la Tienda VIP -->
             <a href="/logout">🚪 Cerrar Sesión</a>
             <span style="float:right;">Hola, {{ session.user_name }} 💜</span>
         {% else %}
